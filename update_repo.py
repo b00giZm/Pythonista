@@ -35,7 +35,7 @@ def get_read_url():
 	params["path"]      = get_path()
 	params["command"]   = "pull"
 	params["command"]   = "read"
-	params["x-success"] = "pythonista://update_script?action=run&argv="
+	params["x-success"] = "pythonista://update_script?action=run&argv={0}&argv=".format(get_path())
 
 	return "working-copy://x-callback-url/chain/?" + urlencode(params, quote_via=quote)
 
