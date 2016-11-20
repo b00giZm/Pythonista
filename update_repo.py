@@ -1,3 +1,4 @@
+from collections import OrderedDict
 import editor
 import re
 from urllib.parse import urlencode, quote
@@ -23,9 +24,16 @@ def main():
 		"path"      : matches[0],
 		"text"      : editor.get_text()
 	}
+	
+	params = OrderedDict()
+	params["key"] = key
+	params["x-success"] = "pythonista://"
+	params["repo"] = "Pythonista"
+	params["path"] = matches[0]
+	params["text"] = editor.get_text()
+	params["askcommit"] = 1
 
-	url = "working-copy://x-callback-url/chain/?" + urlencode(params, quote_via=quote) + "&command=commit"
-	print(url)
+	url = "working-copy://x-callback-url/write/?" + urlencode(params, quote_via=quote)
 	webbrowser.open(url)
 
 if __name__ == '__main__':
