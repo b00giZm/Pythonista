@@ -15,22 +15,14 @@ def main():
 
 	path = editor.get_path()
 	matches = re.findall(regex, path)
-
-	params = {
-		"key"       : key,
-		"x-success" : "pythonista://",
-		"repo"      : "Pythonista",
-		"command"   : "write",
-		"path"      : matches[0],
-		"text"      : editor.get_text()
-	}
 	
 	params = OrderedDict()
-	params["key"] = key
+	
+	params["key"]       = key
 	params["x-success"] = "pythonista://"
-	params["repo"] = "Pythonista"
-	params["path"] = matches[0]
-	params["text"] = editor.get_text()
+	params["repo"]      = "Pythonista"
+	params["path"]      = matches[0]
+	params["text"]      = editor.get_text()
 	params["askcommit"] = 1
 
 	url = "working-copy://x-callback-url/write/?" + urlencode(params, quote_via=quote)
